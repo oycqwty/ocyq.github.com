@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          spring boot - OuYangCQ&#39;s personal blog
+          Spring三大组件 - OuYangCQ&#39;s personal blog
         
     </title>
 
-    <link rel="canonical" href="http://www.huweihuang.com/article/spring-boot/">
+    <link rel="canonical" href="http://www.huweihuang.com/article/spring源码解读/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -89,7 +89,7 @@
                         <div class="tags">
                             
                         </div>
-                        <h1>spring boot</h1>
+                        <h1>Spring三大组件</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by OuYang的个人博客 on
@@ -210,50 +210,58 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="spring-boot总结"><strong><em>Spring Boot总结</em></strong></h2>
-<p>SpringBoot核心功能<br>
-1、独立运行Spring项目<br>
-Spring boot 可以以jar包形式独立运行，运行一个Spring Boot项目只需要通过java -jar xx.jar来运行。<br>
-2、内嵌servlet容器<br>
-Spring Boot可以选择内嵌Tomcat、jetty或者Undertow,这样我们无须以war包形式部署项目。<br>
-3、提供starter简化Maven配置<br>
-spring提供了一系列的start pom来简化Maven的依赖加载，例如，当你使用了spring-boot-starter-web，会自动加入如图5-1所示的依赖包。<br>
-4、自动装配Spring <br>
-SpringBoot会根据在类路径中的jar包，类、为jar包里面的类自动配置Bean，这样会极大地减少我们要使用的配置。当然，SpringBoot只考虑大多数的开发场景，并不是所有的场景，若在实际开发中我们需要配置Bean，而SpringBoot灭有提供支持，则可以自定义自动配置。<br>
-5、准生产的应用监控<br>
-SpringBoot提供基于http ssh telnet对运行时的项目进行监控。<br>
-6、无代码生产和xml配置　　<br>
-SpringBoot不是借助与代码生成来实现的，而是通过条件注解来实现的，这是Spring4.x提供的新特性。</p>
-<p>SpringBoot优缺点<br>
-优点：<br>
-1、快速构建项目。<br>
-2、对主流开发框架的无配置集成。<br>
-3、项目可独立运行，无须外部依赖Servlet容器。<br>
-4、提供运行时的应用监控。<br>
-5、极大的提高了开发、部署效率。<br>
-6、与云计算的天然集成。<br>
-缺点：<br>
-1、如果你不认同spring框架，也许这就是缺点。<br>
-2、SpringBoot特性<br>
-3、创建独立的Spring项目<br>
-4、内置Tomcat和Jetty容器<br>
-5、提供一个starter POMs来简化Maven配置<br>
-6、提供了一系列大型项目中常见的非功能性特性，如安全、指标，健康检测、外部配置等<br>
-7、完全没有代码生成和xml配置文件</p>
-<p>SpringBoot CLI</p>
-<p>SpringBoot CLI 是SpringBoot提供的控制台命令工具。</p>
-<p>SpringBoot maven 构建项目<br>
-spring-boot-starter-parent：是一个特殊Start，它用来提供相关的Maven依赖项，使用它之后，常用的包依赖可以省去version标签。</p>
-<p>SpringBoot几个常用的注解</p>
-<p>（1）@RestController和@Controller指定一个类，作为控制器的注解 ，并说明其区别<br>
-（2）@RequestMapping方法级别的映射注解，这一个用过Spring MVC的小伙伴相信都很熟悉 <br>
-（3）@EnableAutoConfiguration和@SpringBootApplication是类级别的注解，根据maven依赖的jar来自动猜测完成正确的spring的对应配置，只要引入了spring-boot-starter-web的依赖，默认会自动配置Spring MVC和tomcat容器<br>
-（4）@Configuration类级别的注解，一般这个注解，我们用来标识main方法所在的类,完成元数据bean的初始化。<br>
-（5）@ComponentScan类级别的注解，自动扫描加载所有的Spring组件包括Bean注入，一般用在main方法所在的类上 <br>
-（6）@ImportResource类级别注解，当我们必须使用一个xml的配置时，使用@ImportResource和@Configuration来标识这个文件资源的类。 <br>
-（7）@Autowired注解，一般结合@ComponentScan注解，来自动注入一个Service或Dao级别的Bean<br>
-（8）@Component类级别注解，用来标识一个组件，比如我自定了一个filter，则需要此注解标识之后，Spring Boot才会正确识别。</p>
-<h5 id="springboot是如何管理事务的直接写transactional注解就行在方法就是方法事务类上就是类事务">springboot是如何管理事务的？直接写@transactional注解就行，在方法就是方法事务，类上就是类事务</h5>
+                <p>核心容器(Spring core)</p>
+<p>核心容器提供Spring框架的基本功能。Spring以bean的方式组织和管理Java应用中的各个组件及其关系。Spring使用BeanFactory来产生和管理Bean，它是工厂模式的实现。BeanFactory使用控制反转(IoC)模式将应用的配置和依赖性规范与实际的应用程序代码分开。BeanFactory使用依赖注入的方式提供给组件依赖。<br>
+Spring上下文(Spring context)</p>
+<p>Spring上下文是一个配置文件，向Spring框架提供上下文信息。Spring上下文包括企业服务，如JNDI、EJB、电子邮件、国际化、校验和调度功能。<br>
+Spring面向切面编程(Spring AOP)</p>
+<p>通过配置管理特性，Spring AOP 模块直接将面向方面的编程功能集成到了 Spring框架中。所以，可以很容易地使 Spring框架管理的任何对象支持 AOP。Spring AOP 模块为基于 Spring 的应用程序中的对象提供了事务管理服务。通过使用 Spring AOP，不用依赖 EJB 组件，就可以将声明性事务管理集成到应用程序中。</p>
+<p>Spring DAO模块</p>
+<p>DAO模式主要目的是将持久层相关问题与一般的的业务规则和工作流隔离开来。Spring 中的DAO提供一致的方式访问数据库，不管采用何种持久化技术，Spring都提供一直的编程模型。Spring还对不同的持久层技术提供一致的DAO方式的异常层次结构。<br>
+Spring ORM模块</p>
+<p>Spring 与所有的主要的ORM映射框架都集成的很好，包括Hibernate、JDO实现、TopLink和IBatis SQL Map等。Spring为所有的这些框架提供了模板之类的辅助类，达成了一致的编程风格。<br>
+Spring Web模块</p>
+<p>Web上下文模块建立在应用程序上下文模块之上，为基于Web的应用程序提供了上下文。Web层使用Web层框架，可选的，可以是Spring自己的MVC框架，或者提供的Web框架，如Struts、Webwork、tapestry和jsf。<br>
+Spring MVC框架(Spring WebMVC)</p>
+<p>MVC框架是一个全功能的构建Web应用程序的MVC实现。通过策略接口，MVC框架变成为高度可配置的。Spring的MVC框架提供清晰的角色划分：控制器、验证器、命令对象、表单对象和模型对象、分发器、处理器映射和视图解析器。Spring支持多种视图技术。</p>
+<p>Spring三大组件：</p>
+<p>Bean组件<br>
+组件作用<br>
+    Bean组件在Spring中的Beans包下，为了解决三件事。Bean的创建，Bean的定义，Bean的解析。最关心的就是Bean的创建。<br>
+Bean的创建<br>
+    1、工厂模式的实现，顶层接口是：BeanFactory<br>
+    虽然最终实现类是DefaultListableBeanFactory，但是其上层接口都是为了区分在Spring内部对象的传递和转换的过程，对对象的数据访问所做的限制。<br>
+    ListableBeanFactory：可列表的<br>
+    HierarchicalBeanFactory：可继承的<br>
+    AutowriteCapableBeanFactory：可自动装配的<br>
+    这四个接口，共同定义了Bean的集合，Bean之间的关系，Bean的行为。<br>
+Bean的定义<br>
+    Bean的定义完整的描述在Spring配置文件中节点中，包括子节点等。<br>
+    在Spring内部它被转换成BeanDefinition对象，后续操作都是对这个对象操作。<br>
+    主要是BeanDefinition来描述<br>
+Bean的解析<br>
+    BeanDefinitionReader<br>
+    Bean的解析就是对Spring配置文件以及对Tag的解析。</p>
+<p>Context组件<br>
+组件作用<br>
+    在Spring中的context包下，为Spring提供运行环境，用以保存各个对象状态。<br>
+    Context作为Spring的IOC容器，整合了大部分功能或说大部分功能的基础，完成了以下几件事：<br>
+      1、标识一个应用环境<br>
+      2、利用BeanFactory创建Bean对象<br>
+      3、保存对象关系表<br>
+      4、能够捕获各种事件<br>
+    ApplicationContext是context的顶级父类，除了能标识一个应用的基本信息外，还继承了五个接口，扩展了Context的功能。并且继承了BeanFactory，说明Spring容器中运行的主体对象是Bean，另外还继承了ResourceLoader，可以让ApplicationContext可以访问任何外部资源。</p>
+<p>ApplicationContext子类<br>
+    1、ConfigurableApplicationContext：表示Context是可以修改的，在构建Context，用户可以动态添加或者修改已有的配置。<br>
+    2、WebApplicationContext：为Web准备的Context，可以访问ServletContext。</p>
+<p>Core组件<br>
+访问资源<br>
+    1、它包含了很多关键类，一个重要的组成部分就是定义的资源的访问方式，这种把所有资源都抽象成了一个接口的方式很值得学习。<br>
+    2、Resource接口封装了各种可能的资源类型，继承了InputStreamSource接口。<br>
+    加载资源的问题，也就是资源加载者的统一，由ResourceLoader接口来完成。<br>
+    默认实现是：DefaultResourceLoader</p>
+<p>Core资源的加载</p>
+<h5 id="core组件将解析等工作委托给了resourcepatternresolver来完成作为一个接头人把资源的加载解析和定义整合在了一起便于其他组件使用">Core组件将解析等工作委托给了ResourcePatternResolver来完成，作为一个接头人，把资源的加载，解析和定义整合在了一起便于其他组件使用。</h5>
 
                 
 
@@ -261,10 +269,10 @@ spring-boot-starter-parent：是一个特殊Start，它用来提供相关的Mave
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/spring源码解读/" data-toggle="tooltip" data-placement="top" title="Spring三大组件">&larr; Previous Post</a>
-                        </li>
                     
+                        <li class="next">
+                            <a href="/article/spring-boot/" data-toggle="tooltip" data-placement="top" title="spring boot">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -319,7 +327,7 @@ spring-boot-starter-parent：是一个特殊Start，它用来提供相关的Mave
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#spring-boot总结"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><strong><em>Spring Boot&#x603B;&#x7ED3;</em></strong></span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#springboot是如何管理事务的直接写transactional注解就行在方法就是方法事务类上就是类事务"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">springboot&#x662F;&#x5982;&#x4F55;&#x7BA1;&#x7406;&#x4E8B;&#x52A1;&#x7684;&#xFF1F;&#x76F4;&#x63A5;&#x5199;@transactional&#x6CE8;&#x89E3;&#x5C31;&#x884C;&#xFF0C;&#x5728;&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x65B9;&#x6CD5;&#x4E8B;&#x52A1;&#xFF0C;&#x7C7B;&#x4E0A;&#x5C31;&#x662F;&#x7C7B;&#x4E8B;&#x52A1;</span></a></li></ol></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#core组件将解析等工作委托给了resourcepatternresolver来完成作为一个接头人把资源的加载解析和定义整合在了一起便于其他组件使用"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Core&#x7EC4;&#x4EF6;&#x5C06;&#x89E3;&#x6790;&#x7B49;&#x5DE5;&#x4F5C;&#x59D4;&#x6258;&#x7ED9;&#x4E86;ResourcePatternResolver&#x6765;&#x5B8C;&#x6210;&#xFF0C;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x63A5;&#x5934;&#x4EBA;&#xFF0C;&#x628A;&#x8D44;&#x6E90;&#x7684;&#x52A0;&#x8F7D;&#xFF0C;&#x89E3;&#x6790;&#x548C;&#x5B9A;&#x4E49;&#x6574;&#x5408;&#x5728;&#x4E86;&#x4E00;&#x8D77;&#x4FBF;&#x4E8E;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x4F7F;&#x7528;&#x3002;</span></a></li></ol>
         
         </div>
       </aside>
