@@ -7,40 +7,8 @@
     </url>
 
     <url>
-        <loc>http://www.huweihuang.com/article/test/</loc>
-        <lastmod>2019-05-12T04:53:33.065Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://www.huweihuang.com/article/spring-boot/</loc>
-        <lastmod>2019-05-12T04:02:09.734Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.huweihuang.com/article/my-first-blog/</loc>
-        <lastmod>2019-05-11T14:19:22.323Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.huweihuang.com/article/hello-world/</loc>
-        <lastmod>2019-05-11T14:12:32.764Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.huweihuang.com/article/hexo-theme-huweihuang/</loc>
-        <lastmod>2019-03-27T06:18:02.000Z</lastmod>
+        <lastmod>2019-05-12T05:26:06.402Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
