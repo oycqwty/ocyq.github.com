@@ -134,7 +134,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -148,7 +148,7 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -208,6 +208,38 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/tomcat端口占用/">
+        <h2 class="post-title">
+            tomcat端口占用
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            启动Tomcat时报错——Several ports (8005, 8080, 8009) required by Tomcat v8.5 Server at
+错误原因：端口占用
+解决方法：
+1、在dos下,输入  netstat   -ano|findstr  8080
+//说明:查看占用8080端口的进程,显示占用端口的进程
+2.输入 taskkill  /pid  1952  /f
+/......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by OuYang的个人博客 on
+            2019-05-30
+        </p>
+        <div class="tags">
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -333,6 +365,10 @@ Spring Boot可以选择内嵌Tomcat、jetty或者Undertow,这样我们无须以w
     <ul>
       
         <li>
+          <a href="/article/tomcat端口占用/">tomcat端口占用</a>
+        </li>
+      
+        <li>
           <a href="/article/spring源码解读/">Spring三大组件</a>
         </li>
       
@@ -364,7 +400,7 @@ Spring Boot可以选择内嵌Tomcat、jetty或者Undertow,这样我们无须以w
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li></ul>
     </div>
 
         <hr>
