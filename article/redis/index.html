@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Spring三大组件 - OuYangCQ&#39;s personal blog
+          redis - OuYangCQ&#39;s personal blog
         
     </title>
 
-    <link rel="canonical" href="http://www.huweihuang.com/article/spring源码解读/">
+    <link rel="canonical" href="http://www.huweihuang.com/article/redis/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -89,11 +89,11 @@
                         <div class="tags">
                             
                         </div>
-                        <h1>Spring三大组件</h1>
+                        <h1>redis</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by OuYang的个人博客 on
-                            2019-05-12
+                            2019-06-02
                         </span>
                     </div>
                 
@@ -210,58 +210,374 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>核心容器(Spring core)</p>
-<p>核心容器提供Spring框架的基本功能。Spring以bean的方式组织和管理Java应用中的各个组件及其关系。Spring使用BeanFactory来产生和管理Bean，它是工厂模式的实现。BeanFactory使用控制反转(IoC)模式将应用的配置和依赖性规范与实际的应用程序代码分开。BeanFactory使用依赖注入的方式提供给组件依赖。<br>
-Spring上下文(Spring context)</p>
-<p>Spring上下文是一个配置文件，向Spring框架提供上下文信息。Spring上下文包括企业服务，如JNDI、EJB、电子邮件、国际化、校验和调度功能。<br>
-Spring面向切面编程(Spring AOP)</p>
-<p>通过配置管理特性，Spring AOP 模块直接将面向方面的编程功能集成到了 Spring框架中。所以，可以很容易地使 Spring框架管理的任何对象支持 AOP。Spring AOP 模块为基于 Spring 的应用程序中的对象提供了事务管理服务。通过使用 Spring AOP，不用依赖 EJB 组件，就可以将声明性事务管理集成到应用程序中。</p>
-<p>Spring DAO模块</p>
-<p>DAO模式主要目的是将持久层相关问题与一般的的业务规则和工作流隔离开来。Spring 中的DAO提供一致的方式访问数据库，不管采用何种持久化技术，Spring都提供一直的编程模型。Spring还对不同的持久层技术提供一致的DAO方式的异常层次结构。<br>
-Spring ORM模块</p>
-<p>Spring 与所有的主要的ORM映射框架都集成的很好，包括Hibernate、JDO实现、TopLink和IBatis SQL Map等。Spring为所有的这些框架提供了模板之类的辅助类，达成了一致的编程风格。<br>
-Spring Web模块</p>
-<p>Web上下文模块建立在应用程序上下文模块之上，为基于Web的应用程序提供了上下文。Web层使用Web层框架，可选的，可以是Spring自己的MVC框架，或者提供的Web框架，如Struts、Webwork、tapestry和jsf。<br>
-Spring MVC框架(Spring WebMVC)</p>
-<p>MVC框架是一个全功能的构建Web应用程序的MVC实现。通过策略接口，MVC框架变成为高度可配置的。Spring的MVC框架提供清晰的角色划分：控制器、验证器、命令对象、表单对象和模型对象、分发器、处理器映射和视图解析器。Spring支持多种视图技术。</p>
-<p>Spring三大组件：</p>
-<p>Bean组件<br>
-组件作用<br>
-    Bean组件在Spring中的Beans包下，为了解决三件事。Bean的创建，Bean的定义，Bean的解析。最关心的就是Bean的创建。<br>
-Bean的创建<br>
-    1、工厂模式的实现，顶层接口是：BeanFactory<br>
-    虽然最终实现类是DefaultListableBeanFactory，但是其上层接口都是为了区分在Spring内部对象的传递和转换的过程，对对象的数据访问所做的限制。<br>
-    ListableBeanFactory：可列表的<br>
-    HierarchicalBeanFactory：可继承的<br>
-    AutowriteCapableBeanFactory：可自动装配的<br>
-    这四个接口，共同定义了Bean的集合，Bean之间的关系，Bean的行为。<br>
-Bean的定义<br>
-    Bean的定义完整的描述在Spring配置文件中节点中，包括子节点等。<br>
-    在Spring内部它被转换成BeanDefinition对象，后续操作都是对这个对象操作。<br>
-    主要是BeanDefinition来描述<br>
-Bean的解析<br>
-    BeanDefinitionReader<br>
-    Bean的解析就是对Spring配置文件以及对Tag的解析。</p>
-<p>Context组件<br>
-组件作用<br>
-    在Spring中的context包下，为Spring提供运行环境，用以保存各个对象状态。<br>
-    Context作为Spring的IOC容器，整合了大部分功能或说大部分功能的基础，完成了以下几件事：<br>
-      1、标识一个应用环境<br>
-      2、利用BeanFactory创建Bean对象<br>
-      3、保存对象关系表<br>
-      4、能够捕获各种事件<br>
-    ApplicationContext是context的顶级父类，除了能标识一个应用的基本信息外，还继承了五个接口，扩展了Context的功能。并且继承了BeanFactory，说明Spring容器中运行的主体对象是Bean，另外还继承了ResourceLoader，可以让ApplicationContext可以访问任何外部资源。</p>
-<p>ApplicationContext子类<br>
-    1、ConfigurableApplicationContext：表示Context是可以修改的，在构建Context，用户可以动态添加或者修改已有的配置。<br>
-    2、WebApplicationContext：为Web准备的Context，可以访问ServletContext。</p>
-<p>Core组件<br>
-访问资源<br>
-    1、它包含了很多关键类，一个重要的组成部分就是定义的资源的访问方式，这种把所有资源都抽象成了一个接口的方式很值得学习。<br>
-    2、Resource接口封装了各种可能的资源类型，继承了InputStreamSource接口。<br>
-    加载资源的问题，也就是资源加载者的统一，由ResourceLoader接口来完成。<br>
-    默认实现是：DefaultResourceLoader</p>
-<p>Core资源的加载</p>
-<h5 id="core组件将解析等工作委托给了resourcepatternresolver来完成作为一个接头人把资源的加载解析和定义整合在了一起便于其他组件使用">Core组件将解析等工作委托给了ResourcePatternResolver来完成，作为一个接头人，把资源的加载，解析和定义整合在了一起便于其他组件使用。</h5>
+                <ol>
+<li>
+<p>redis的数据结构：</p>
+<ul>
+<li>redis存储的是：key,value格式的数据，其中key都是字符串，value有5种不同的数据结构
+<ul>
+<li>value的数据结构：
+<ol>
+<li>字符串类型 string
+<ol start="2">
+<li>哈希类型 hash ： map格式</li>
+<li>列表类型 list ： linkedlist格式。支持重复元素</li>
+<li>集合类型 set  ： 不允许重复元素</li>
+<li>有序集合类型 sortedset：不允许重复元素，且元素有顺序</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>字符串类型 string</li>
+<li>存储： set key value<br>
+127.0.0.1:6379&gt; set username zhangsan<br>
+OK</li>
+<li>获取： get key<br>
+127.0.0.1:6379&gt; get username<br>
+&quot;zhangsan&quot;</li>
+<li>删除： del key<br>
+127.0.0.1:6379&gt; del age<br>
+(integer) 1</li>
+<li>哈希类型 hash</li>
+<li>存储： hset key field value<br>
+127.0.0.1:6379&gt; hset myhash username lisi<br>
+(integer) 1<br>
+127.0.0.1:6379&gt; hset myhash password 123<br>
+(integer) 1</li>
+<li>获取：</li>
+</ol>
+<pre><code>* hget key field: 获取指定的field对应的值
+  127.0.0.1:6379&gt; hget myhash username
+  &quot;lisi&quot;
+* hgetall key：获取所有的field和value
+  127.0.0.1:6379&gt; hgetall myhash
+  1) &quot;username&quot;
+  2) &quot;lisi&quot;
+  3) &quot;password&quot;
+  4) &quot;123&quot;
+</code></pre>
+<ol start="3">
+<li>
+<p>删除： hdel key field<br>
+127.0.0.1:6379&gt; hdel myhash username<br>
+(integer) 1</p>
+</li>
+<li>
+<p>列表类型 list:可以添加一个元素到列表的头部（左边）或者尾部（右边）</p>
+</li>
+<li>
+<p>添加：</p>
+</li>
+<li>
+<p>lpush key value: 将元素加入列表左表</p>
+</li>
+<li>
+<p>rpush key value：将元素加入列表右边</p>
+</li>
+</ol>
+<pre><code>  127.0.0.1:6379&gt; lpush myList a
+  (integer) 1
+  127.0.0.1:6379&gt; lpush myList b
+  (integer) 2
+  127.0.0.1:6379&gt; rpush myList c
+  (integer) 3
+</code></pre>
+<ol start="2">
+<li>获取：</li>
+</ol>
+<pre><code>* lrange key start end ：范围获取
+  127.0.0.1:6379&gt; lrange myList 0 -1
+  1) &quot;b&quot;
+  2) &quot;a&quot;
+  3) &quot;c&quot;
+</code></pre>
+<ol start="3">
+<li>删除：</li>
+</ol>
+<pre><code>* lpop key： 删除列表最左边的元素，并将元素返回
+* rpop key： 删除列表最右边的元素，并将元素返回
+</code></pre>
+</li>
+<li>
+<p>集合类型 set ： 不允许重复元素</p>
+<ol>
+<li>
+<p>存储：sadd key value<br>
+127.0.0.1:6379&gt; sadd myset a<br>
+	(integer) 1<br>
+	127.0.0.1:6379&gt; sadd myset a<br>
+	(integer) 0</p>
+<ol start="2">
+<li>获取：smembers key:获取set集合中所有元素<br>
+127.0.0.1:6379&gt; smembers myset</li>
+</ol>
+<ol>
+<li>“a”<br>
+. 删除：srem key value:删除set集合中的某个元素	<br>
+127.0.0.1:6379&gt; srem myset a<br>
+(integer) 1</li>
+</ol>
+</li>
+<li>
+<p>有序集合类型 sortedset：不允许重复元素，且元素有顺序.每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。</p>
+</li>
+<li>
+<p>存储：zadd key score value<br>
+127.0.0.1:6379&gt; zadd mysort 60 zhangsan<br>
+(integer) 1<br>
+127.0.0.1:6379&gt; zadd mysort 50 lisi<br>
+(integer) 1<br>
+127.0.0.1:6379&gt; zadd mysort 80 wangwu<br>
+(integer) 1</p>
+</li>
+<li>
+<p>获取：zrange key start end [withscores]<br>
+127.0.0.1:6379&gt; zrange mysort 0 -1</p>
+</li>
+</ol>
+<pre><code>1) &quot;lisi&quot;
+2) &quot;zhangsan&quot;
+3) &quot;wangwu&quot;
+
+127.0.0.1:6379&gt; zrange mysort 0 -1 withscores
+1) &quot;zhangsan&quot;
+2) &quot;60&quot;
+3) &quot;wangwu&quot;
+4) &quot;80&quot;
+5) &quot;lisi&quot;
+6) &quot;500&quot;
+</code></pre>
+<ol start="3">
+<li>
+<p>删除：zrem key value<br>
+127.0.0.1:6379&gt; zrem mysort lisi<br>
+(integer) 1</p>
+</li>
+<li>
+<p>通用命令</p>
+</li>
+<li>
+<p>keys * : 查询所有的键</p>
+</li>
+<li>
+<p>type key ： 获取键对应的value的类型</p>
+</li>
+<li>
+<p>del key：删除指定的key value</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>redis持久化机制：<br>
+		1. RDB：默认方式，不需要进行配置，默认就使用这种机制<br>
+			* 在一定的间隔时间中，检测key的变化情况，然后持久化数据</p>
+<p>AOF：日志记录的方式，可以记录每一条命令的操作。可以每一次命令操作后，持久化数据<br>
+			1. 编辑redis.windwos.conf文件<br>
+				appendonly no（关闭aof） --&gt; appendonly yes （开启aof）</p>
+<pre><code>			# appendfsync always ： 每一次操作都进行持久化
+			appendfsync everysec ： 每隔一秒进行一次持久化
+			# appendfsync no	 ： 不进行持久化
+</code></pre>
+<p>----------------------------------Jedis操作各种redis中的数据结构--------------------------</p>
+<p>/**</p>
+<ul>
+<li>jedis的测试类<br>
+*/<br>
+public class JedisTest {</li>
+</ul>
+<pre><code>@Test
+public void test1(){
+    //1. 获取连接
+    Jedis jedis = new Jedis(&quot;localhost&quot;,6379);
+    //2. 操作
+    jedis.set(&quot;username&quot;,&quot;zhangsan&quot;);
+
+    //3. 关闭连接
+    jedis.close();
+}
+
+
+/**
+ * string 数据结构操作
+ */
+@Test
+public void test2(){
+    //1. 获取连接
+    Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+    //2. 操作
+    //存储
+    jedis.set(&quot;username&quot;,&quot;zhangsan&quot;);
+    //获取
+    String username = jedis.get(&quot;username&quot;);
+    System.out.println(username);
+
+    //可以使用setex()方法存储可以指定过期时间的 key value
+    jedis.setex(&quot;activecode&quot;,20,&quot;hehe&quot;);//将activecode：hehe键值对存入redis，并且20秒后自动删除该键值对
+
+    //3. 关闭连接
+    jedis.close();
+}
+
+/**
+ * hash 数据结构操作
+ */
+@Test
+public void test3(){
+    //1. 获取连接
+    Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+    //2. 操作
+    // 存储hash
+    jedis.hset(&quot;user&quot;,&quot;name&quot;,&quot;lisi&quot;);
+    jedis.hset(&quot;user&quot;,&quot;age&quot;,&quot;23&quot;);
+    jedis.hset(&quot;user&quot;,&quot;gender&quot;,&quot;female&quot;);
+
+    // 获取hash
+    String name = jedis.hget(&quot;user&quot;, &quot;name&quot;);
+    System.out.println(name);
+
+
+    // 获取hash的所有map中的数据
+    Map&lt;String, String&gt; user = jedis.hgetAll(&quot;user&quot;);
+
+    // keyset
+    Set&lt;String&gt; keySet = user.keySet();
+    for (String key : keySet) {
+        //获取value
+        String value = user.get(key);
+        System.out.println(key + &quot;:&quot; + value);
+    }
+
+    //3. 关闭连接
+    jedis.close();
+}
+
+
+/**
+ * list 数据结构操作
+ */
+@Test
+public void test4(){
+    //1. 获取连接
+    Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+    //2. 操作
+    // list 存储
+    jedis.lpush(&quot;mylist&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);//从左边存
+    jedis.rpush(&quot;mylist&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);//从右边存
+
+    // list 范围获取
+    List&lt;String&gt; mylist = jedis.lrange(&quot;mylist&quot;, 0, -1);
+    System.out.println(mylist);
+    
+    // list 弹出
+    String element1 = jedis.lpop(&quot;mylist&quot;);//c
+    System.out.println(element1);
+
+    String element2 = jedis.rpop(&quot;mylist&quot;);//c
+    System.out.println(element2);
+
+    // list 范围获取
+    List&lt;String&gt; mylist2 = jedis.lrange(&quot;mylist&quot;, 0, -1);
+    System.out.println(mylist2);
+
+    //3. 关闭连接
+    jedis.close();
+}
+
+
+
+/**
+ * set 数据结构操作
+ */
+@Test
+public void test5(){
+    //1. 获取连接
+    Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+    //2. 操作
+
+
+    // set 存储
+    jedis.sadd(&quot;myset&quot;,&quot;java&quot;,&quot;php&quot;,&quot;c++&quot;);
+
+    // set 获取
+    Set&lt;String&gt; myset = jedis.smembers(&quot;myset&quot;);
+    System.out.println(myset);
+
+    //3. 关闭连接
+    jedis.close();
+}
+
+/**
+ * sortedset 数据结构操作
+ */
+@Test
+public void test6(){
+    //1. 获取连接
+    Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
+    //2. 操作
+    // sortedset 存储
+    jedis.zadd(&quot;mysortedset&quot;,3,&quot;亚瑟&quot;);
+    jedis.zadd(&quot;mysortedset&quot;,30,&quot;后裔&quot;);
+    jedis.zadd(&quot;mysortedset&quot;,55,&quot;孙悟空&quot;);
+
+    // sortedset 获取
+    Set&lt;String&gt; mysortedset = jedis.zrange(&quot;mysortedset&quot;, 0, -1);
+
+    System.out.println(mysortedset);
+
+
+    //3. 关闭连接
+    jedis.close();
+}
+
+/**
+ * jedis连接池使用
+ */
+@Test
+public void test7(){
+
+    //0.创建一个配置对象
+    JedisPoolConfig config = new JedisPoolConfig();
+    config.setMaxTotal(50);
+    config.setMaxIdle(10);
+
+    //1.创建Jedis连接池对象
+    JedisPool jedisPool = new JedisPool(config,&quot;localhost&quot;,6379);
+
+    //2.获取连接
+    Jedis jedis = jedisPool.getResource();
+    //3. 使用
+    jedis.set(&quot;hehe&quot;,&quot;heihei&quot;);
+
+
+    //4. 关闭 归还到连接池中
+    jedis.close();;
+
+}
+
+/**
+ * jedis连接池工具类使用
+ */
+@Test
+public void test8(){
+    
+    //通过连接池工具类获取
+    Jedis jedis = JedisPoolUtils.getJedis();
+
+
+
+    //3. 使用
+    jedis.set(&quot;hello&quot;,&quot;world&quot;);
+
+
+    //4. 关闭 归还到连接池中
+    jedis.close();;
+
+}
+</code></pre>
 
                 
 
@@ -269,13 +585,9 @@ Bean的解析<br>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/tomcat端口占用/" data-toggle="tooltip" data-placement="top" title="tomcat端口占用">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/spring-boot/" data-toggle="tooltip" data-placement="top" title="spring boot">Next Post &rarr;</a>
+                            <a href="/article/tomcat端口占用/" data-toggle="tooltip" data-placement="top" title="tomcat端口占用">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -331,7 +643,7 @@ Bean的解析<br>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#core组件将解析等工作委托给了resourcepatternresolver来完成作为一个接头人把资源的加载解析和定义整合在了一起便于其他组件使用"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Core&#x7EC4;&#x4EF6;&#x5C06;&#x89E3;&#x6790;&#x7B49;&#x5DE5;&#x4F5C;&#x59D4;&#x6258;&#x7ED9;&#x4E86;ResourcePatternResolver&#x6765;&#x5B8C;&#x6210;&#xFF0C;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x63A5;&#x5934;&#x4EBA;&#xFF0C;&#x628A;&#x8D44;&#x6E90;&#x7684;&#x52A0;&#x8F7D;&#xFF0C;&#x89E3;&#x6790;&#x548C;&#x5B9A;&#x4E49;&#x6574;&#x5408;&#x5728;&#x4E86;&#x4E00;&#x8D77;&#x4FBF;&#x4E8E;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x4F7F;&#x7528;&#x3002;</span></a></li></ol>
+          <ol class="nav">none</ol>
         
         </div>
       </aside>

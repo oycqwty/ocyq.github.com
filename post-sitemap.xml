@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://www.huweihuang.com/article/redis/</loc>
+        <lastmod>2019-06-02T06:57:22.526Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.huweihuang.com/article/tomcat%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/</loc>
         <lastmod>2019-05-30T00:52:07.329Z</lastmod>
         <changefreq>weekly</changefreq>
