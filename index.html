@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -208,6 +208,38 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/article/Docker启动Elasticsearch7-x报错以及解决方法/">
+        <h2 class="post-title">
+            Docker启动Elasticsearch7.x报错以及解决方法
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用Docker run 命令
+12docker run  -d -p 9200:9200 -p 9300:9300 --name 用户自定义名字 容器ID1
+会看到一串字符串，一般情况下我们会误以为它启动成功
+
+使用docker logs -f 容器ID 查看日志发现：
+ERROR: [1] bootstrap checks failed
+[1]: max virtual memory a......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by OuYang的个人博客 on
+            2019-06-30
+        </p>
+        <div class="tags">
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -491,6 +523,10 @@ Spring Boot可以选择内嵌Tomcat、jetty或者Undertow,这样我们无须以w
     <ul>
       
         <li>
+          <a href="/article/Docker启动Elasticsearch7-x报错以及解决方法/">Docker启动Elasticsearch7.x报错以及解决方法</a>
+        </li>
+      
+        <li>
           <a href="/article/解决docker-pull镜像速度问题/"> 解决docker pull镜像速度问题</a>
         </li>
       
@@ -504,10 +540,6 @@ Spring Boot可以选择内嵌Tomcat、jetty或者Undertow,这样我们无须以w
       
         <li>
           <a href="/article/redis/">redis</a>
-        </li>
-      
-        <li>
-          <a href="/article/tomcat端口占用/">tomcat端口占用</a>
         </li>
       
     </ul>
@@ -534,7 +566,7 @@ Spring Boot可以选择内嵌Tomcat、jetty或者Undertow,这样我们无须以w
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li></ul>
     </div>
 
         <hr>
